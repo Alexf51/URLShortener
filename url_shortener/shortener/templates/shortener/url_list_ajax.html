@@ -1,0 +1,15 @@
+<ul class="list-group">
+          {% for url in urls %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <a href="{{ request.scheme }}://{{ request.get_host }}/{{ url.short_url }}" class="h5">{{ url.short_url }}</a>
+                <p class="mb-1 text-muted">{{ url.original_url }}</p>
+                <small>Создал: {{ url.user.username }}</small>
+              </div>
+              <div class="text-right">
+                <p class="mb-0">Количество кликов: <strong>{{ url.clicks }}</strong></p>
+                <p class="mb-0">Дата регистрации: <strong>{{ url.created_at }}</strong></p>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>

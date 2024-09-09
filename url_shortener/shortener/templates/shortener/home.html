@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container text-center my-5">
+    <h1 class="display-4">Добро пожаловать в URL Shortener</h1>
+    <p class="lead">Сократите свои длинные URL ссылки и делитесь ими с легкостью!</p>
+    <hr class="my-4">
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Простота использования</h5>
+            <p class="card-text">Просто вставьте свой длинный URL, и мы создадим короткую ссылку за считанные секунды.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Отслеживание ссылок</h5>
+            <p class="card-text">Следите за количеством кликов по вашим коротким ссылкам и анализируйте их эффективность.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Безопасность</h5>
+            <p class="card-text">Все ваши ссылки защищены, и мы заботимся о вашей конфиденциальности.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="mt-5">Как это работает?</h2>
+    <ol class="text-left">
+      <li>Вставьте длинный URL в поле ввода</li>
+      <li>Нажмите кнопку "Создать сокращенный URL"</li>
+      <li>Получите короткую ссылку, которой можно делиться в социальных сетях, по электронной почте или в мессенджерах</li>
+    </ol>
+
+    <h2 class="mt-5">Попробуйте прямо сейчас!</h2>
+    <a href="{% url 'create_url' %}" class="btn btn-primary btn-lg">Создать сокращенный URL</a>
+  </div>
+{% endblock %}

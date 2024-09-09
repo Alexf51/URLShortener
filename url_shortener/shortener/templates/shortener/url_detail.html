@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container my-5">
+    <h1 class="mb-4">Детали сокращенного URL</h1>
+    <p class="lead">На этой странице вы можете просмотреть подробную информацию о сокращенном URL, включая его оригинальный адрес, количество кликов и дату создания.</p>
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Оригинальный URL</h5>
+        <p class="card-text">{{ url.original_url }}</p>
+
+        <h5 class="card-title">Сокращенный URL</h5>
+        <p class="card-text">
+          <a href="{{ request.scheme }}://{{ request.get_host }}/{{ url.short_url }}" class="h5">{{ url.short_url }}</a>
+        </p>
+
+        <h5 class="card-title">Статистика</h5>
+        <p class="card-text">Количество кликов: <strong>{{ url.clicks }}</strong></p>
+        <p class="card-text">Дата создания: <strong>{{ url.created_at }}</strong></p>
+        <p class="card-text">Создатель: <strong>{{ user.username }}</strong></p>
+      </div>
+    </div>
+
+    <a href="{% url 'url_list' %}" class="btn btn-primary">Вернуться к списку URL</a>
+  </div>
+{% endblock %}

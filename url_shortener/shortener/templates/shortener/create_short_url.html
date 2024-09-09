@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Создание сокращенного URL</h1>
+  <form method="post" class="form-group">
+    {% csrf_token %}
+    <label for="original_url" class="form-label">Полный URL:</label>
+    <input type="url" id="original_url" name="original_url" required class="form-control">
+    <button type="submit" class="btn btn-primary mt-3">Создать сокращенный URL</button>
+  </form>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container my-5">
+    <h1 class="mb-4">Список пользователей и их сокращенных URL</h1>
+    <p class="lead">На этой странице вы можете просмотреть всех пользователей и их сокращенные URL. Нажмите на кнопку "Показать URL", чтобы увидеть список сокращенных ссылок, созданных каждым пользователем.</p>
+
+    <ul class="list-group">
+      {% for user in users %}
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="{% url 'user_detail' user.pk %}" class="h5">{{ user.username }}</a>
+            <button class="btn btn-info btn-sm dropdown-toggle" onclick="toggleDropdown(this)">Показать URL</button>
+          </div>
+          <ul class="dropdown" style="display: none;">
+            {% for url in user.url_set.all %}
+              <li>
+                <a href="{{ request.scheme }}://{{ request.get_host }}/{{ url.short_url }}">{{ url.short_url }}</a>
+                ({{ url.original_url }})
+              </li>
+            {% empty %}
+              <li class="text-muted">Нет сокращенных URL</li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <script>
+    function toggleDropdown(button) {
+        const dropdown = button.closest('li').querySelector('.dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+
+  <style>
+    .dropdown {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        padding-left: 15px; /* Отступ для вложенного списка */
+    }
+    .dropdown-toggle {
+        cursor: pointer;
+    }
+  </style>
+{% endblock %}
